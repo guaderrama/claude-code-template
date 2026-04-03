@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx supabase *)",
+      "Bash(npx playwright *)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git branch*)",
+      "Bash(git checkout*)",
+      "Bash(git add *)",
+      "Bash(git commit*)",
+      "Bash(git stash*)",
+      "Bash(gh api:*)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)",
+      "Bash(dir:*)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(python:*)",
+      "Bash(node *)",
+      "Bash(npx tsc *)",
+      "Bash(curl:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:nextjs.org)",
+      "WebFetch(domain:supabase.com)",
+      "WebFetch(domain:react.dev)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(rm -rf *)",
+      "Bash(npx supabase db reset --linked*)"
+    ]
+  },
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true
+}
