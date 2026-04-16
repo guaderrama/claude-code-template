@@ -26,8 +26,7 @@ Start here to understand the project infrastructure:
 Todos invocables con `/nombre`. Formato Skills 2.0.
 
 ### Migration & Setup
-- **[skills/inicializar-proyecto/SKILL.md](./skills/inicializar-proyecto/SKILL.md)** — `/inicializar-proyecto` — Restructure any project to use optimized Claude Code template
-- **[skills/migrar-ui-ux-2026/SKILL.md](./skills/migrar-ui-ux-2026/SKILL.md)** — `/migrar-ui-ux-2026` — Migrate existing projects to UI/UX Pro 2026 setup
+- **[skills/sincronizar-template/SKILL.md](./skills/sincronizar-template/SKILL.md)** — `/sincronizar-template <ruta>` — Propaga este template (hooks, skills, rules, docs) a cualquier proyecto existente con merge inteligente, backup automatico via `git stash create` + branch, preview obligatorio, escritura atomica, y rollback en un comando. Incluye Fase 9 opcional para consolidar CLAUDE.md extenso en resumen ejecutivo ~100 lineas redistribuyendo contenido a `.claude/docs/`.
 
 ### Development Workflows
 - **[skills/bucle-agentico/SKILL.md](./skills/bucle-agentico/SKILL.md)** — `/bucle-agentico` — Agentic loop for complex features
@@ -43,9 +42,17 @@ Todos invocables con `/nombre`. Formato Skills 2.0.
 ### Security
 - **[skills/security-review/SKILL.md](./skills/security-review/SKILL.md)** — `/security-review` — OWASP Top 10 audit before deploy
 
+### Bug Prevention (Anti-Error Powers)
+- **[skills/code-review/SKILL.md](./skills/code-review/SKILL.md)** — `/code-review` — Multi-pass review (Correctness → Design → Style) with `[BLOCKING]/[IMPORTANT]/[NIT]` tags
+- **[skills/pre-mortem/SKILL.md](./skills/pre-mortem/SKILL.md)** — `/pre-mortem` — Simulate failure BEFORE implementing; lists top 5 failure modes
+- **[skills/refactor-smells/SKILL.md](./skills/refactor-smells/SKILL.md)** — `/refactor-smells` — Detect 10 code smells and propose concrete refactors (differs from built-in `simplify`)
+
 ### Skill Optimization
 - **[skills/optimize-skill/SKILL.md](./skills/optimize-skill/SKILL.md)** — `/optimize-skill [name]` — Auto-research optimize a single skill
-- **[skills/optimize-all-skills/SKILL.md](./skills/optimize-all-skills/SKILL.md)** — `/optimize-all-skills` — Batch optimize all skills
+- **[skills/auto-research/SKILL.md](./skills/auto-research/SKILL.md)** — `/auto-research` — Iterative skill self-improvement (Karpathy-style)
+
+### Operations
+- **[skills/auditoria-vps/SKILL.md](./skills/auditoria-vps/SKILL.md)** — `/auditoria-vps` — Auditoría completa de VPS Hostinger (salud, seguridad, Docker, cron, SSL)
 
 ---
 
@@ -156,8 +163,6 @@ Specialized skills for building features:
   - Anti "AI slop", bold aesthetic direction, production-grade code
 
 ### Quality & Testing
-- **[skills/test-driven-development/SKILL.md](./skills/test-driven-development/SKILL.md)** - TDD obligatorio: RED → GREEN → REFACTOR
-  - No production code without a failing test first
 - **[skills/systematic-debugging/SKILL.md](./skills/systematic-debugging/SKILL.md)** - Debugging como senior developer
   - 4 fases: Root Cause → Pattern Analysis → Hypothesis → Implementation
 - **[skills/verification-before-completion/SKILL.md](./skills/verification-before-completion/SKILL.md)** - Evidence before claims, always
@@ -166,8 +171,6 @@ Specialized skills for building features:
   - Screenshots, DOM inspection, debugging UI, servidor automático
 
 ### Performance & Best Practices
-- **[skills/react-best-practices/SKILL.md](./skills/react-best-practices/SKILL.md)** - 57 reglas React/Next.js de Vercel Engineering
-  - Waterfalls, bundle size, server performance, re-renders, rendering
 - **[skills/supabase-postgres-best-practices/SKILL.md](./skills/supabase-postgres-best-practices/SKILL.md)** - Best practices Postgres de Supabase oficial
   - Query performance, connection mgmt, RLS, schema design, indexing
 
@@ -316,8 +319,7 @@ Choose what you want to do:
 2. **Complex feature** → Document in [task/](./task/)
 
 ### Migration (Existing Projects)
-1. **Add all skills to existing project** → Copy `AGREGAR_UI_UX_PRO.md` to project root and tell Claude to execute it
-2. **Migrate with slash command** → Run `/migrar-ui-ux-2026`
+1. **Sincronizar template a proyecto existente** → Run `/sincronizar-template <ruta-al-template>` (hace backup automatico, preview obligatorio, nunca sobrescribe contenido custom)
 
 ---
 

@@ -35,5 +35,40 @@
     ]
   },
   "autoMemoryEnabled": true,
-  "autoDreamEnabled": true
+  "autoDreamEnabled": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const i=require('fs').readFileSync(0,'utf8');const {tool_input}=JSON.parse(i);const c=(tool_input&&tool_input.command)||'';const d=[/rm\\s+-rf\\s+\\/(?:\\s|$|etc\\b|usr\\b|bin\\b|boot\\b|var\\b|home\\b|root\\b|sys\\b|proc\\b|lib\\b|\\*)/,/git\\s+push\\b[^&;|]*\\b(main|master)\\b[^&;|]*(--force(?:-with-lease)?|\\s-f\\b)/,/git\\s+push\\b[^&;|]*(--force(?:-with-lease)?|\\s-f\\b)[^&;|]*\\b(main|master)\\b/,/DROP\\s+DATABASE\\b/i,/TRUNCATE\\s+TABLE\\b/i,/--no-verify\\b/];for(const r of d){if(r.test(c)){console.error('BLOCKED by hook: '+r);process.exit(2)}}process.exit(0)\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const i=require('fs').readFileSync(0,'utf8');const {tool_input}=JSON.parse(i);let p=(tool_input&&(tool_input.file_path||tool_input.path))||'';p=p.replace(/\\\\/g,'/');const d=[/(^|\\/)src\\/legacy\\//,/(^|\\/)\\.env$/,/\\.env\\.production\\b/,/\\.env\\.prod\\b/];for(const r of d){if(r.test(p)){console.error('WARN: edited protected path '+p)}}process.exit(0)\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const i=require('fs').readFileSync(0,'utf8');const {prompt}=JSON.parse(i);if(/\\b(commit|push|deploy|ship|release)\\b/i.test(prompt||'')){console.log('REMINDER: run npm run typecheck && npm run lint && npm test before committing.')}process.exit(0)\""
+          }
+        ]
+      }
+    ]
+  }
 }
